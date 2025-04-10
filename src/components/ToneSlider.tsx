@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Slider } from ".././components/ui/slider";
 import { Label } from ".././components/ui/label";
 import { motion } from "framer-motion";
-import { Circle, CircleX, DoorClosed } from "lucide-react";
+import { CircleX } from "lucide-react";
 
 export type ToneMode = "friend" | "brother" | "guru";
 
