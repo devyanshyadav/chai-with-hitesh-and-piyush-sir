@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Slider } from ".././components/ui/slider";
 import { Label } from ".././components/ui/label";
 import { motion } from "framer-motion";
+import { Circle, CircleX, DoorClosed } from "lucide-react";
 
 export type ToneMode = "friend" | "brother" | "guru";
 
@@ -20,7 +21,10 @@ const ToneSlider = ({ onChange }: ToneSliderProps) => {
   };
 
   return (
-    <div className="w-full p-6 bg-white/80 border-b">
+    <div className="w-full p-6 bg-white border-b">
+      <label htmlFor="side-drawer" className="absolute top-4 right-4 cursor-pointer opacity-50">
+        <CircleX/>
+      </label>
       <div className="space-y-6">
         <div className="space-y-2">
           <Label htmlFor="tone" className="font-medium text-gray-700">

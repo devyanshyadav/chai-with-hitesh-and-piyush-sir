@@ -21,11 +21,22 @@ const DualChat = () => {
           Chai With Hitesh & Piyush Sir
         </h1>
         <button className="w-10 h-10 rounded-full flex items-center justify-center hover:shadow-lg">
-        <img width="50" height="50" src="https://img.icons8.com/3d-fluency/94/github.png" alt="github"/>
+          <img
+            width="50"
+            height="50"
+            src="https://img.icons8.com/3d-fluency/94/github.png"
+            alt="github"
+          />
         </button>
       </header>
-      <main className="grid divide-x grid-cols-[300px_1fr] overflow-hidden flex-grow">
-        <div className="grid grid-rows-[auto_1fr_1fr]">
+      <main className="grid divide-x md:grid-cols-[300px_1fr] overflow-hidden flex-grow relative">
+        <input
+          type="checkbox"
+          name="side-drawer"
+          id="side-drawer"
+          className="fixed top-4 hidden right-4 peer"
+        />
+        <div className="grid md:static fixed peer-checked:-translate-x-full md:!transform-none transition-all inset-y-0 md:w-auto w-[60%] z-50 bg-white shadow-lg md:shadow-none grid-rows-[auto_1fr_1fr]">
           <ToneSlider onChange={setToneMode} />
           <CharacterSelector onSelectionChange={setActiveCharacters} />
         </div>

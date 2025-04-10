@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, Loader2, CornerDownLeft, Sparkles } from "lucide-react";
+import { Send, Loader2, CornerDownLeft, Sparkles, Menu } from "lucide-react";
 import { Button } from ".././components/ui/button";
 import { Textarea } from "../components/ui/textarea";
 import { motion, AnimatePresence } from "framer-motion";
@@ -165,6 +165,9 @@ const DualChatInterface = ({
     <div className="flex flex-col flex-grow overflow-hidden">
       <div className="bg-gradient-to-r from-chai-secondary to-chai-dark px-6 py-3 !text-white flex items-center justify-between">
         <div className="flex items-center gap-2">
+        <label htmlFor="side-drawer" className="cursor-pointer ">
+        <Menu/>
+      </label>
           <Sparkles className="h-5 w-5 text-chai-primary" />
           <h3 className="font-medium">Tech Conversations</h3>
         </div>
@@ -178,7 +181,7 @@ const DualChatInterface = ({
         </div>
       </div>
 
-      <div className="w-full *:max-w-[80%] flex-grow *:mx-auto overflow-hidden overflow-y-auto p-4 space-y-4 ">
+      <div className="w-full *:md:max-w-[80%] flex-grow *:mx-auto overflow-hidden overflow-y-auto p-4 space-y-4 ">
         <AnimatePresence>
           {messages.map((message) => (
             <motion.div
@@ -188,9 +191,9 @@ const DualChatInterface = ({
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
               className={cn(
-                "flex items-start gap-3 p-4 max-w-[85%]",
+                "flex items-start gap-3 p-4 md:max-w-[85%]",
                 message.role === "user"
-                  ? "!mr-20 bg-gray-100/80 backdrop-blur-sm shadow-sm border-l-4 w-[60%] border-chai-secondary"
+                  ? "md:!mr-20 bg-gray-100/80 backdrop-blur-sm shadow-sm border-l-4 md:w-[60%] border-chai-secondary"
                   : message.role === "hitesh"
                   ? "bg-gradient-to-r from-chai-primary/5 to-chai-primary/10 border-l-4 border-chai-primary shadow-sm"
                   : "bg-gradient-to-r from-blue-100/80 to-blue-50/80 border-l-4 border-blue-500 shadow-sm"
@@ -244,7 +247,7 @@ const DualChatInterface = ({
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className={cn(
-              "flex items-start gap-3 p-4 max-w-[80%] shadow-sm",
+              "flex items-start gap-3 p-4 md:max-w-[80%] shadow-sm",
               activeCharacters.includes("hitesh") &&
                 !activeCharacters.includes("piyush")
                 ? "bg-gradient-to-r from-chai-primary/5 to-chai-primary/10 border-l-4 border-chai-primary"
@@ -288,7 +291,7 @@ const DualChatInterface = ({
 
       <form
         onSubmit={handleSubmit}
-        className="p-4 flex-shrink-0 *:max-w-[80%] *:mx-auto border-t bg-slate-50/70"
+        className="p-4 flex-shrink-0 *:md:max-w-[80%] *:mx-auto border-t bg-slate-50/70"
       >
         <div className="relative">
           <Textarea
