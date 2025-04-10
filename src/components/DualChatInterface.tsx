@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Send, User, Loader2, CornerDownLeft, Sparkles } from "lucide-react";
+import { Send, Loader2, CornerDownLeft, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { motion, AnimatePresence } from "framer-motion";
@@ -83,9 +83,11 @@ const DualChatInterface = ({
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const endOfMessagesRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     scrollToBottom();
+    textareaRef.current?.focus();
   }, [messages]);
 
   const scrollToBottom = () => {
@@ -161,7 +163,7 @@ const DualChatInterface = ({
 
   return (
     <div className="flex flex-col flex-grow overflow-hidden">
-      <div className="bg-gradient-to-r from-chai-secondary to-chai-dark px-6 py-3 text-white flex items-center justify-between">
+      <div className="bg-gradient-to-r from-chai-secondary to-chai-dark px-6 py-3 !text-white flex items-center justify-between">
         <div className="flex items-center gap-2">
           <Sparkles className="h-5 w-5 text-chai-primary" />
           <h3 className="font-medium">Tech Conversations</h3>
@@ -176,7 +178,7 @@ const DualChatInterface = ({
         </div>
       </div>
 
-      <div className="max-w-[80%] flex-grow mx-auto overflow-hidden overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-gray-50 to-white">
+      <div className="w-full *:max-w-[80%] flex-grow *:mx-auto overflow-hidden overflow-y-auto p-4 space-y-4 ">
         <AnimatePresence>
           {messages.map((message) => (
             <motion.div
@@ -188,7 +190,7 @@ const DualChatInterface = ({
               className={cn(
                 "flex items-start gap-3 p-4 max-w-[85%]",
                 message.role === "user"
-                  ? "ml-auto bg-gray-100/80 backdrop-blur-sm shadow-sm"
+                  ? "!mr-20 bg-gray-100/80 backdrop-blur-sm shadow-sm border-l-4 w-[60%] border-chai-secondary"
                   : message.role === "hitesh"
                   ? "bg-gradient-to-r from-chai-primary/5 to-chai-primary/10 border-l-4 border-chai-primary shadow-sm"
                   : "bg-gradient-to-r from-blue-100/80 to-blue-50/80 border-l-4 border-blue-500 shadow-sm"
@@ -198,14 +200,14 @@ const DualChatInterface = ({
                 className={cn(
                   "flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center shadow-md",
                   message.role === "user"
-                    ? "bg-gradient-to-br from-chai-secondary to-chai-dark text-white"
+                    ? " text-white"
                     : message.role === "hitesh"
                     ? "bg-gradient-to-br from-chai-primary to-chai-primary/80 text-white"
                     : "bg-gradient-to-br from-blue-500 to-blue-400 text-white"
                 )}
               >
                 {message.role === "user" ? (
-                  <User size={18} />
+                  <img width="50" height="50" src="https://img.icons8.com/fluency/50/test-account--v1.png" alt="test-account--v1"/>
                 ) : (
                   <div className="text-lg font-bold">
                     {message.role === "hitesh" ? "HC" : "PG"}
@@ -215,13 +217,7 @@ const DualChatInterface = ({
               <div className="flex-1">
                 <p
                   className={cn(
-                    "text-sm font-medium",
-                    message.role === "user"
-                      ? "text-gray-800"
-                      : message.role === "hitesh"
-                      ? "text-chai-secondary"
-                      : "text-blue-700"
-                  )}
+                    "text-sm font-medium" )}
                 >
                   {message.role === "user"
                     ? "You"
@@ -247,21 +243,41 @@ const DualChatInterface = ({
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-start gap-3 p-4 rounded-xl bg-gradient-to-r from-chai-primary/5 to-chai-primary/10 border-l-4 border-chai-primary max-w-[80%] shadow-sm"
+            className={cn(
+              "flex items-start gap-3 p-4 max-w-[80%] shadow-sm",
+              activeCharacters.includes("hitesh") &&
+                !activeCharacters.includes("piyush")
+                ? "bg-gradient-to-r from-chai-primary/5 to-chai-primary/10 border-l-4 border-chai-primary"
+                : "bg-gradient-to-r from-blue-100/80 to-blue-50/80 border-l-4 border-blue-500"
+            )}
           >
-            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-chai-primary to-chai-primary/80 text-white flex items-center justify-center shadow-md">
+            <div
+              className={cn(
+                "flex-shrink-0 w-10 h-10 rounded-full text-white flex items-center justify-center shadow-md",
+                activeCharacters.includes("hitesh") &&
+                  !activeCharacters.includes("piyush")
+                  ? "bg-gradient-to-br from-chai-primary to-chai-primary/80"
+                  : "bg-gradient-to-br from-blue-500 to-blue-400"
+              )}
+            >
               <div className="text-lg font-bold">
-                {activeCharacters.includes("hitesh") ? "HC" : "PG"}
+                {activeCharacters.includes("hitesh") &&
+                !activeCharacters.includes("piyush")
+                  ? "HC"
+                  : "PG"}
               </div>
             </div>
             <div className="flex-1">
-              <p className="text-sm font-medium text-chai-secondary">
-                {activeCharacters.includes("hitesh")
+              <p
+                className={"text-sm font-medium"}
+              >
+                {activeCharacters.includes("hitesh") &&
+                !activeCharacters.includes("piyush")
                   ? "Hitesh Choudhary"
                   : "Piyush Garg"}
               </p>
               <div className="flex items-center mt-2">
-                <Loader2 className="animate-spin w-4 h-4 mr-2 text-chai-primary" />
+                <Loader2 className={`animate-spin w-4 h-4 mr-2 ${activeCharacters.includes("hitesh") && !activeCharacters.includes("piyush") ? "text-chai-primary" : "text-blue-500"}`} />
                 <p className="text-sm text-gray-600">Typing a response...</p>
               </div>
             </div>
@@ -272,11 +288,13 @@ const DualChatInterface = ({
 
       <form
         onSubmit={handleSubmit}
-        className="p-4 flex-shrink-0 *:max-w-[80%] *:mx-auto border-t border-gray-200 bg-white"
+        className="p-4 flex-shrink-0 *:max-w-[80%] *:mx-auto border-t bg-slate-50/70"
       >
         <div className="relative">
           <Textarea
             value={input}
+            autoFocus
+            ref={textareaRef as any}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder={`Ask ${activeCharacters.join(

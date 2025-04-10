@@ -46,11 +46,11 @@ const CharacterSelector = ({ onSelectionChange }: CharacterSelectorProps) => {
             <Check size={16} />
           </div>
         )}
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-chai-dark to-chai-secondary flex items-center justify-center border-4 border-chai-primary text-white text-2xl font-bold">
-            HC
+        <div className="flex flex-col items-center gap-1">
+          <div className="w-20 h-20 rounded-full overflow-hidden brightness-110 flex items-center justify-center border-4 border-chai-primary text-white text-2xl font-bold">
+            <img src="/hiteshsir.png" alt="Hitesh" className="w-full h-full object-cover" />
           </div>
-          <h3 className="font-bold text-lg">Hitesh Choudhary</h3>
+          <h3 className="font-bold text-lg mt-2">Hitesh Choudhary</h3>
           <p className="text-sm text-center text-gray-600">Tech YouTuber & Educator</p>
         </div>
       </motion.div>
@@ -71,11 +71,11 @@ const CharacterSelector = ({ onSelectionChange }: CharacterSelectorProps) => {
             <Check size={16} />
           </div>
         )}
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-700 to-blue-500 flex items-center justify-center border-4 border-blue-500 text-white text-2xl font-bold">
-            PG
+        <div className="flex flex-col items-center gap-1">
+          <div className="w-20 h-20 rounded-full overflow-hidden brightness-110 flex items-center justify-center border-4 border-blue-500 text-white text-2xl font-bold">
+            <img src="/piyushsir.png" alt="Piyush" className="w-full h-full object-cover" />
           </div>
-          <h3 className="font-bold text-lg">Piyush Garg</h3>
+          <h3 className="font-bold text-lg mt-2">Piyush Garg</h3>
           <p className="text-sm text-center text-gray-600">React Expert & YouTuber</p>
         </div>
       </motion.div>
