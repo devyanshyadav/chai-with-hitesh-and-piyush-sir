@@ -165,7 +165,7 @@ const DualChatInterface = ({
     <div className="flex flex-col flex-grow overflow-hidden">
       <div className="bg-gradient-to-r from-chai-secondary to-chai-dark px-6 py-3 !text-white flex items-center justify-between">
         <div className="flex items-center gap-2">
-        <label htmlFor="side-drawer" className="cursor-pointer ">
+        <label htmlFor="side-drawer" className="cursor-pointer block md:hidden">
         <Menu/>
       </label>
           <Sparkles className="h-5 w-5 text-chai-primary" />
