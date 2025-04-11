@@ -20,14 +20,14 @@ const DualChat = () => {
           />{" "}
           Chai With Hitesh & Piyush Sir
         </h1>
-        <button className="w-10 h-10 rounded-full flex items-center justify-center hover:shadow-lg">
+        <a href="https://github.com/devyanshyadav/chai-with-hitesh-and-piyush-sir" target="_blank" className="w-10 h-10 rounded-full flex items-center justify-center hover:shadow-lg">
           <img
             width="50"
             height="50"
             src="https://img.icons8.com/3d-fluency/94/github.png"
             alt="github"
           />
-        </button>
+        </a>
       </header>
       <main className="grid divide-x md:grid-cols-[300px_1fr] overflow-hidden flex-grow relative">
         <input
